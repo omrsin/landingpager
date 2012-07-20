@@ -13,3 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+function updateSubmitInfo () {
+	$('.header-form input[name="html_string"]').val($('.home').html());
+}

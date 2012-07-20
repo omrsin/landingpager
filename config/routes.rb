@@ -1,4 +1,6 @@
 Landingpager::Application.routes.draw do
+	post 'core/generate'
+	root to: 'core#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

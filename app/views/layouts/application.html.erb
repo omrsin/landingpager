@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Landingpager</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title><%= full_title(yield(:title)) %></title>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+		<%= render 'layouts/shim' %>
+		<%= analytics_init if Rails.env.production? %>
+	</head>
+	<body>	
+		<%= render 'layouts/header' %>
+		
+		<% flash.each do |key, value| %>
+        <div class="flash"><%= value %></div>
+    <% end %>
+		
+		<%= yield %>
+		
+		<%= debug(params) if Rails.env.development? %>	
 
-<%= yield %>
-
-</body>
+	</body>
 </html>
