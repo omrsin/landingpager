@@ -2,23 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap";
+
 /* Variables */
 
 /* Color Variables */
 $lightBeige: rgba(255, 255, 229, 1);
 $lightBrown: rgba(153, 102, 51, 0.2);
 $darkBrown: rgba(153, 102, 51, 0.8);
+$shadowBrown: rgba(153, 102, 41, 1);
 
 /* Semantic Colors */
-$headerBackground: $lightBeige;
-$headerBorder: $lightBrown;
+$headerBackgroundColor: $lightBeige;
+$headerBorderColor: $lightBrown;
 
-$headerTitle: $darkBrown;
+$headerTitleColor: $darkBrown;
+$shadowColor: $shadowBrown;
 
 /* Font Varibales */
 $ballparkFont: "BallparkWeiner", "Trebuchet MS", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$landliebeFont: "LandliebeRegular", "Trebuchet MS", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$learningCurveFont: "LearningCurveProRegular", "Trebuchet MS", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$specialEliteFont: "SpecialEliteRegular", "Trebuchet MS", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 /* Fonts */
 
@@ -34,23 +37,12 @@ $learningCurveFont: "LearningCurveProRegular", "Trebuchet MS", "Helvetica Neue",
 }
 
 @font-face {
-    font-family: 'LandliebeRegular';
-    src: font-url('landliebe-webfont.eot');
-    src: font-url('landliebe-webfont.eot?#iefix') format('embedded-opentype'),
-         font-url('landliebe-webfont.woff') format('woff'),
-         font-url('landliebe-webfont.ttf') format('truetype'),
-         font-url('landliebe-webfont.svg#LandliebeRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'LearningCurveProRegular';
-    src: font-url('learningcurve_ot-webfont.eot');
-    src: font-url('learningcurve_ot-webfont.eot?#iefix') format('embedded-opentype'),
-         font-url('learningcurve_ot-webfont.woff') format('woff'),
-         font-url('learningcurve_ot-webfont.ttf') format('truetype'),
-         font-url('learningcurve_ot-webfont.svg#LearningCurveProRegular') format('svg');
+    font-family: 'SpecialEliteRegular';
+    src: url('specialelite-webfont.eot');
+    src: url('specialelite-webfont.eot?#iefix') format('embedded-opentype'),
+         url('specialelite-webfont.woff') format('woff'),
+         url('specialelite-webfont.ttf') format('truetype'),
+         url('specialelite-webfont.svg#SpecialEliteRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -61,7 +53,7 @@ body {
 }
 
 .inset-shadow-text {
-	text-shadow: 0px 2px 3px rgba(255, 255, 255, 1);
+	text-shadow: 0px 2px 3px #999;
 }
 
 .container {
@@ -79,8 +71,8 @@ body {
 	-webkit-border-radius: 0 5px 25px 0;
 	-moz-border-radius: 0 5px 25px 0;
 	border-radius: 0 5px 25px 0;
-	border: dashed 2px $lightBrown;
-	background: $headerBackground;
+	border: dashed 2px $headerBorderColor;
+	background: $headerBackgroundColor;
 	-moz-transition: left 1s;
 	-webkit-transition: left 1s;
 	-o-transition: left 1s;
@@ -94,9 +86,9 @@ body {
 		font-family: $ballparkFont;
 		font-weight: normal;
 		font-size: 2.66em;
-		margin: 10px 30px;
+		margin: 20px 30px;
 		float: left;
-		color: $darkBrown;
+		color: $headerTitleColor;
 	}
 	
 	.header-form {
@@ -108,28 +100,68 @@ body {
 /* Body */
 
 .home {
-	min-height: 1000px;
+	background: #FFFFFF;
+	#content {
+		font-family: $specialEliteFont;
+		color: #666666;
+		font-size: 30px;
+		border: dashed 2px #999;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+		header {
+			height: 200px;
+			padding: 20px 0 0 20px;
+		}
+	}
+	#section1, #section2, #section3, #section4, #section5 {
+		height: 100px;
+		border-top: dashed 2px #999;
+		padding: 20px 0 0 20px;
+	}
+	footer {
+		#footer{
+			border-top: dashed 2px #999;
+			height: 150px;
+			padding: 20px 0 0 20px;
+		}
+		#bottom-line {
+			border-top: dashed 2px #999;
+			height: 50px;
+			padding: 20px 0 0 20px;
+		}
+	}
 }
 
 /* Forms */
 
-input[type="submit"] {
-	&.btn {
-		border-radius: 20px 20px;
-		border: none;
-		background-color: $lightBrown;
-		width:39px;
-		height: 41px;	
-		font-size: 30px;
-		cursor: pointer;
-		font-family: $ballparkFont;
-		-webkit-box-shadow: 0px 2px 10px #333;
-		-moz-box-shadow: 0px 2px 10px #333;
-		box-shadow: 0px 2px 10px #333;
-		&:hover {
-			-webkit-box-shadow: 0px 5px 10px #333 inset;
-			-moz-box-shadow: 0px 5px 10px #333 inset;
-			box-shadow: 0px 2px 10px #333 inset;			
+form {
+	margin: 0;
+	input[type="submit"] {
+		&.button {
+			border-radius: 20px 20px;
+			border: none;
+			background-color: $lightBrown;
+			width:39px;
+			height: 41px;
+			cursor: pointer;
+			-webkit-box-shadow: 0px 2px 10px $shadowColor;
+			-moz-box-shadow: 0px 2px 10px $shadowColor;
+			box-shadow: 0px 2px 10px $shadowColor;
+			&:hover {
+				-webkit-box-shadow: 0px 5px 10px $shadowColor inset;
+				-moz-box-shadow: 0px 5px 10px $shadowColor inset;
+				box-shadow: 0px 2px 10px $shadowColor inset;			
+			}
 		}
 	}
+}
+
+/* Color pickers */
+
+#page-bg-colorpicker {
+	display: none;
+	position: absolute;
+	widh: 125px;
+	height: 125px;
 }

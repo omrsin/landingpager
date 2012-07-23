@@ -13,7 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require bootstrap-colorpicker
 
 function updateSubmitInfo () {
 	$('.header-form input[name="html_string"]').val($('.home').html());
 }
+
+function setPosition(domObject, pageX, pageY) {
+	$(domObject).css('left', (pageX)+"px");
+	$(domObject).css('top', (pageY)+"px");
+}
+
+$(document).ready(function(){
+	$('#body').click(function(e){
+		$('#page-bg-colorpicker').toggle();
+		setPosition('#page-bg-colorpicker', e.pageX, e.pageY);	
+	});
+});
+
+$(document).ready(function(){
+	$('#page-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
+		$('#body').css('background-color', e.color.toHex());
+	});
+});

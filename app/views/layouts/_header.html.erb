@@ -1,10 +1,10 @@
 <header class="fixed-menu">
-	<h1 class="inset-shadow-text">Landingpager</h1>
+	<h1>Landingpager</h1>
 
 	<div class="header-form">
 		<%= form_tag({ controller: "core", action: "generate", method: "post" }, onsubmit: "updateSubmitInfo()", ) do %>
 			<%= hidden_field_tag "html_string", "This is just a test"  %>
-			<%= submit_tag("", class: "btn inset-shadow-text") %>
+			<%= submit_tag("", class: "button inset-shadow-text") %>
 		<% end %>	
 	</div>
   
