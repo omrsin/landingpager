@@ -12,13 +12,15 @@ class CoreController < ApplicationController
   private	
   
   def generateMarkup(content)
-  	upper = "<html>\n\t"+
+  	upper = "<!DOCTYPE html>"+
+  					"<html>\n\t"+
   						"<head>\n\t\t"+
   							"<title>Landingpager Site</title>\n\t\t"+
 								"<meta name=\"keywords\" content=\"\">\n\t\t"+
 								"<meta name=\"description\" content=\"\">\n\t"+
+								"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"+
   						"</head>\n\t"+
-  						"<body>\n"
+  						"<body style=\"margin: 0;\">\n"
   	lower = 	"\n\t</body>\n"+
   					"</html>"
   	upper + content + lower

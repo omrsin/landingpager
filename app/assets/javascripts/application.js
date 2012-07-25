@@ -15,6 +15,8 @@
 //= require_tree .
 //= require bootstrap-colorpicker
 
+var headerSelected = false;
+
 function updateSubmitInfo () {
 	$('.header-form input[name="html_string"]').val($('.home').html());
 }
@@ -24,11 +26,29 @@ function setPosition(domObject, pageX, pageY) {
 	$(domObject).css('top', (pageY)+"px");
 }
 
+function showMenu(domObject, e){
+	e.stopPropagation();
+	$(domObject).toggle();
+	setPosition(domObject, e.pageX, e.pageY);
+}
+
 $(document).ready(function(){
-	$('#body').click(function(e){
-		$('#page-bg-colorpicker').toggle();
-		setPosition('#page-bg-colorpicker', e.pageX, e.pageY);	
+	$('#body').bind({
+		click: function(){ showMenu('#page-bg-colorpicker', event); }
 	});
+
+	$('#header').bind({
+		click: function(){ 
+			if(!headerSelected)	{ showMenu('#header-menu', event); }
+			else { alert("Qué problema!"); }
+		}
+	});
+	
+	$('[id|=header-option]').click(function(){
+		$('#header').html($('#header-format-'+this.id.substring(this.id.length-1)).html());
+		headerSelected = true;
+		showMenu('#header-menu', event);
+	});	
 });
 
 $(document).ready(function(){

@@ -1,15 +1,31 @@
 <div class="home">
 	<div id="body">
 		<div id="content" style="width: 1024px; margin: 0 auto;" >
-			<header>HEADER</header>
-			<section id="section1">SECTION 1</section>
-			<section id="section2">SECTION 2</section>
-			<section id="section3">SECTION 3</section>
-			<section id="section4">SECTION 4</section>
-			<section id="section5">SECTION 5</section>
-			<footer>
-				<div id="footer">FOOTER</div>
-				<div id="bottom-line">BOTTOM-LINE</div>
+			<header id="header">
+				<div class="padded">Header</div>				
+			</header>
+			<section id="section1">
+				<div class="padded">Section 1</div>
+			</section>
+			<section id="section2">
+				<div class="padded">Section 2</div>
+			</section>
+			<section id="section3">
+				<div class="padded">Section 3</div>
+			</section>
+			<section id="section4">
+				<div class="padded">Section 4</div>
+			</section>
+			<section id="section5">
+				<div class="padded">Section 5</div>
+			</section>
+			<footer id="footer">
+				<div id="footer-content">
+					<div class="padded">Footer</div>
+				</div>
+				<div id="footer-bottom-line">
+					<div class="padded">Bottom-Line</div>
+				</div>
 			</footer>
 		</div>
 	</div>
@@ -17,3 +33,5 @@
 <div id="page-bg-colorpicker">
 	<input id="page-bg-colorpicker-input">
 </div>
+<%= render 'core/html_menus/header-menus' %>
+<%= render 'core/html_formats/header-formats' %>

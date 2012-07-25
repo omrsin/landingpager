@@ -8,6 +8,7 @@
 
 /* Color Variables */
 $lightBeige: rgba(255, 255, 229, 1);
+$paleYellow: rgba(255, 254, 178, 1);
 $lightBrown: rgba(153, 102, 51, 0.2);
 $darkBrown: rgba(153, 102, 51, 0.8);
 $shadowBrown: rgba(153, 102, 41, 1);
@@ -18,6 +19,9 @@ $headerBorderColor: $lightBrown;
 
 $headerTitleColor: $darkBrown;
 $shadowColor: $shadowBrown;
+
+$menuColor: $lightBeige;
+$menuColorHover: $paleYellow;
 
 /* Font Varibales */
 $ballparkFont: "BallparkWeiner", "Trebuchet MS", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -61,6 +65,14 @@ body {
 	margin: 0 auto;
 }
 
+.padded {
+	padding: 20px 0 0 20px;
+}
+
+#formats {
+	display: none;
+}
+
 /* Header */
 
 .fixed-menu {
@@ -75,8 +87,7 @@ body {
 	background: $headerBackgroundColor;
 	-moz-transition: left 1s;
 	-webkit-transition: left 1s;
-	-o-transition: left 1s;
-	
+	-o-transition: left 1s;	
 	transition: left 1s;
 	&:hover {
 		left: -3px;
@@ -104,33 +115,29 @@ body {
 	#content {
 		font-family: $specialEliteFont;
 		color: #666666;
-		font-size: 30px;
+		font-size: 1em;
 		border: dashed 2px #999;
 		-webkit-border-radius: 20px;
 		-moz-border-radius: 20px;
 		border-radius: 20px;
-		header {
-			height: 200px;
-			padding: 20px 0 0 20px;
+		#header {
+			min-height: 200px;
 		}
-	}
-	#section1, #section2, #section3, #section4, #section5 {
-		height: 100px;
-		border-top: dashed 2px #999;
-		padding: 20px 0 0 20px;
-	}
-	footer {
-		#footer{
+		#section1, #section2, #section3, #section4, #section5 {
+			min-height: 100px;
 			border-top: dashed 2px #999;
-			height: 150px;
-			padding: 20px 0 0 20px;
 		}
-		#bottom-line {
-			border-top: dashed 2px #999;
-			height: 50px;
-			padding: 20px 0 0 20px;
+		#footer {
+			#footer-content {
+				min-height: 150px;
+				border-top: dashed 2px #999;
+			}
+			#footer-bottom-line {
+				min-height: 50px;
+				border-top: dashed 2px #999;				
+			}
 		}
-	}
+	}	
 }
 
 /* Forms */
@@ -158,6 +165,38 @@ form {
 	}
 }
 
+/* Menu */
+.menu {
+	width: 200px;
+	min-height: 230px;
+	background: $headerBackgroundColor;
+	-webkit-border-radius: 0 5px 25px 0;
+	-moz-border-radius: 0 5px 25px 0;
+	border-radius: 0 5px 25px 0;
+	border: dashed 2px $headerBorderColor;
+	display: none;
+	position: absolute;
+	div {
+		height: 100px;
+		padding: 10px 0 0 10px;
+		color: $headerTitleColor;
+		font-size: 1.7em;
+		&:hover {
+			background: $menuColorHover;
+			&:first-child {
+				-webkit-border-radius: 0 5px 0 0;
+				-moz-border-radius: 0 5px 0 0;
+				border-radius: 0 5px 0 0;
+			}
+			&:last-child {
+				-webkit-border-radius: 0 0 25px 0;
+				-moz-border-radius: 0 0 25px 0;
+				border-radius: 0 0 25px 0;
+			}
+		}
+	}
+}
+
 /* Color pickers */
 
 #page-bg-colorpicker {
@@ -165,4 +204,5 @@ form {
 	position: absolute;
 	widh: 125px;
 	height: 125px;
+	
 }
