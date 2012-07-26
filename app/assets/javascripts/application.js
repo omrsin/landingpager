@@ -18,7 +18,8 @@
 var headerSelected = false;
 
 function updateSubmitInfo () {
-	$('.header-form input[name="html_string"]').val($('.home').html());
+	$('section, div').removeClass('bordered top-bordered');
+	$('.header-form input[name="html_string"]').val($('#main').html());
 }
 
 function setPosition(domObject, pageX, pageY) {
@@ -40,7 +41,7 @@ $(document).ready(function(){
 	$('#header').bind({
 		click: function(){ 
 			if(!headerSelected)	{ showMenu('#header-menu', event); }
-			else { alert("Qué problema!"); }
+			else { showMenu('#style-menu', event); }
 		}
 	});
 	
@@ -54,5 +55,8 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$('#page-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
 		$('#body').css('background-color', e.color.toHex());
+	});
+	$('#header-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
+		$('#header').css('background-color', e.color.toHex());
 	});
 });

@@ -12,6 +12,7 @@ $paleYellow: rgba(255, 254, 178, 1);
 $lightBrown: rgba(153, 102, 51, 0.2);
 $darkBrown: rgba(153, 102, 51, 0.8);
 $shadowBrown: rgba(153, 102, 41, 1);
+$lightGray: rgba(153, 153, 153, 1);
 
 /* Semantic Colors */
 $headerBackgroundColor: $lightBeige;
@@ -22,6 +23,8 @@ $shadowColor: $shadowBrown;
 
 $menuColor: $lightBeige;
 $menuColorHover: $paleYellow;
+
+$contentBorderColor: $lightGray;
 
 /* Font Varibales */
 $ballparkFont: "BallparkWeiner", "Trebuchet MS", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -69,6 +72,17 @@ body {
 	padding: 20px 0 0 20px;
 }
 
+.bordered {
+	border: dashed 2px $contentBorderColor;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+
+.top-bordered {
+	border-top: dashed 2px $contentBorderColor;
+}
+
 #formats {
 	display: none;
 }
@@ -110,31 +124,24 @@ body {
 
 /* Body */
 
-.home {
+#main {
 	background: #FFFFFF;
 	#content {
 		font-family: $specialEliteFont;
 		color: #666666;
-		font-size: 1em;
-		border: dashed 2px #999;
-		-webkit-border-radius: 20px;
-		-moz-border-radius: 20px;
-		border-radius: 20px;
+		font-size: 1em;		
 		#header {
 			min-height: 200px;
 		}
 		#section1, #section2, #section3, #section4, #section5 {
-			min-height: 100px;
-			border-top: dashed 2px #999;
+			min-height: 100px;			
 		}
 		#footer {
 			#footer-content {
 				min-height: 150px;
-				border-top: dashed 2px #999;
 			}
 			#footer-bottom-line {
-				min-height: 50px;
-				border-top: dashed 2px #999;				
+				min-height: 50px;				
 			}
 		}
 	}	
