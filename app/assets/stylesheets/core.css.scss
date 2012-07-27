@@ -55,8 +55,9 @@ $specialEliteFont: "SpecialEliteRegular", "Trebuchet MS", "Helvetica Neue", Helv
 }
 
 /* Genearl */
-body {
+html, body {
 	margin: 0;
+	height: 100%;
 }
 
 .inset-shadow-text {
@@ -125,6 +126,7 @@ body {
 /* Body */
 
 #main {
+	height: 100%;
 	background: #FFFFFF;
 	#content {
 		font-family: $specialEliteFont;
@@ -182,7 +184,7 @@ form {
 	border: dashed 2px $headerBorderColor;
 	display: none;
 	position: absolute;
-	div {
+	.primary {
 		min-height: 50px;
 		padding: 10px 0 0 10px;
 		color: $headerTitleColor;
@@ -199,8 +201,29 @@ form {
 				-moz-border-radius: 0 0 25px 0;
 				border-radius: 0 0 25px 0;
 			}
-		}
+		}		
 	}
+	.secondary {
+		font-size: 14px;		
+		background: $menuColorHover;
+		color: $headerTitleColor;
+		div {
+			padding: 5px 0 0 20px;
+			&:first-child {
+				padding-top: 10px;
+			}
+		}		
+	}
+	.multiple {
+		min-height: 25px;
+	}
+	.active {
+		background: $menuColorHover;
+	}
+}
+
+#border-secondary {
+	display: none;
 }
 
 /* Color pickers */
@@ -208,4 +231,43 @@ form {
 .my-colorpicker {
 	width: inherit;
 	margin-top: 15px;
+}
+
+/* Tooltip */
+.mytooltip {
+	margin: 50px;
+	padding: .8em;
+	width: 16em;
+	border: solid;
+	position: absolute;
+	background: #999;
+	border: solid;
+	border-width: 2px !important;
+	.bubble-outer {
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-bottom-width: 0;
+		background: none;
+		border-left: 0px solid transparent;
+		border-right: 16px solid;
+		border-bottom: solid 16px transparent;
+		bottom: 50px;
+		right: auto;
+		left: -4%;
+		margin-left: -8px;
+		.bubble-inner {
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-bottom-width: 0;
+			background: none;
+			border-left: 0px solid transparent;
+			border-right: 11px solid #999;
+			border-bottom: 11px solid transparent;
+			bottom: auto;
+			top: 2px;
+			left: 6px;
+		}
+	}
 }

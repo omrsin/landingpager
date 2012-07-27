@@ -49,7 +49,12 @@ $(document).ready(function(){
 		$('#header').html($('#header-format-'+this.id.substring(this.id.length-1)).html());
 		headerSelected = true;
 		showMenu('#header-menu', event);
-	});	
+	});
+	
+	$('#style-menu #border-primary').click(function(){
+		$(this).toggleClass('multiple active');
+		$('#border-secondary').toggle("fast");
+	});
 });
 
 $(document).ready(function(){
