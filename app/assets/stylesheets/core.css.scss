@@ -175,7 +175,6 @@ form {
 /* Menu */
 .menu {
 	width: 200px;
-	min-height: 230px;
 	background: $headerBackgroundColor;
 	-webkit-border-radius: 0 5px 25px 0;
 	-moz-border-radius: 0 5px 25px 0;
@@ -184,7 +183,7 @@ form {
 	display: none;
 	position: absolute;
 	div {
-		height: 100px;
+		min-height: 50px;
 		padding: 10px 0 0 10px;
 		color: $headerTitleColor;
 		font-size: 1.7em;
@@ -206,10 +205,7 @@ form {
 
 /* Color pickers */
 
-#page-bg-colorpicker {
-	display: none;
-	position: absolute;
-	widh: 125px;
-	height: 125px;
-	
+.my-colorpicker {
+	width: inherit;
+	margin-top: 15px;
 }

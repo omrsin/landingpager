@@ -35,7 +35,7 @@ function showMenu(domObject, e){
 
 $(document).ready(function(){
 	$('#body').bind({
-		click: function(){ showMenu('#page-bg-colorpicker', event); }
+		click: function(){ showMenu('#body-menu', event); }
 	});
 
 	$('#header').bind({
