@@ -51,9 +51,48 @@ $(document).ready(function(){
 		showMenu('#header-menu', event);
 	});
 	
-	$('#style-menu #border-primary').click(function(){
+	$('#style-menu #border-menu-primary').click(function(){
 		$(this).toggleClass('multiple active');
-		$('#border-secondary').toggle("fast");
+		$('#border-menu-secondary').toggle("fast");
+	});
+	
+	$('#border-option-position').click(function(){
+		offset = $(this).offset();
+		width = parseInt($(this).parent().css('width'));
+		$('#border-menu-position').css('left', offset.left+width+5+'px')
+															.css('top', offset.top+'px')
+															.toggle('fast');
+	});
+	
+	$('#border-option-style').click(function(){
+		offset = $(this).offset();
+		width = parseInt($(this).parent().css('width'));
+		$('#border-menu-style').css('left', offset.left+width+5+'px')
+															.css('top', offset.top+'px')
+															.toggle('fast');
+	});
+	
+	$('#border-option-width').click(function(){
+		offset = $(this).offset();
+		width = parseInt($(this).parent().css('width'));
+		$('#border-menu-width').css('left', offset.left+width+5+'px')
+															.css('top', offset.top+'px')
+															.toggle('fast');
+	});
+	
+	$('[id|=border-position]').click(function(){
+		position = this.id.substring('border-position-'.length);
+		$('#header').css('border-'+position, 'solid 5px black');
+	});
+	
+	$('[id|=border-style]').click(function(){
+		style = this.id.substring('border-style-'.length);
+		$('#header').css('border-style', style);
+	});
+	
+	$('[id|=border-width]').click(function(){
+		width = this.id.substring('border-width-'.length);
+		$('#header').css('border-width', width);
 	});
 });
 
@@ -61,7 +100,12 @@ $(document).ready(function(){
 	$('#page-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
 		$('#body').css('background-color', e.color.toHex());
 	});
+	
 	$('#header-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
 		$('#header').css('background-color', e.color.toHex());
+	});
+	
+	$('#header-border-colorpicker-input').colorpicker().on('changeColor', function(e){
+		$('#header').css('border-color', e.color.toHex());
 	});
 });

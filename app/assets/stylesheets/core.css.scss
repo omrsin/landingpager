@@ -9,8 +9,8 @@
 /* Color Variables */
 $lightBeige: rgba(255, 255, 229, 1);
 $paleYellow: rgba(255, 254, 178, 1);
-$lightBrown: rgba(153, 102, 51, 0.2);
-$darkBrown: rgba(153, 102, 51, 0.8);
+$lightBrown: rgba(234, 223, 192, 1);
+$darkBrown: rgba(173, 133, 87, 1);
 $shadowBrown: rgba(153, 102, 41, 1);
 $lightGray: rgba(153, 153, 153, 1);
 
@@ -78,6 +78,10 @@ html, body {
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
+}
+
+.hidden {
+	display: none;
 }
 
 .top-bordered {
@@ -212,6 +216,9 @@ form {
 			&:first-child {
 				padding-top: 10px;
 			}
+			&:hover {
+				background: $headerBackgroundColor;
+			}
 		}		
 	}
 	.multiple {
@@ -222,10 +229,6 @@ form {
 	}
 }
 
-#border-secondary {
-	display: none;
-}
-
 /* Color pickers */
 
 .my-colorpicker {
@@ -234,15 +237,10 @@ form {
 }
 
 /* Tooltip */
-.mytooltip {
-	margin: 50px;
-	padding: .8em;
+
+.my-tooltip {
 	width: 16em;
-	border: solid;
 	position: absolute;
-	background: #999;
-	border: solid;
-	border-width: 2px !important;
 	.bubble-outer {
 		position: absolute;
 		width: 0;
@@ -250,24 +248,23 @@ form {
 		border-bottom-width: 0;
 		background: none;
 		border-left: 0px solid transparent;
-		border-right: 16px solid;
+		border-right: 16px dashed $headerBorderColor;
 		border-bottom: solid 16px transparent;
-		bottom: 50px;
 		right: auto;
+		top: 15px;
 		left: -4%;
 		margin-left: -8px;
 		.bubble-inner {
 			position: absolute;
 			width: 0;
 			height: 0;
-			border-bottom-width: 0;
 			background: none;
 			border-left: 0px solid transparent;
-			border-right: 11px solid #999;
-			border-bottom: 11px solid transparent;
+			border-right: 12px solid $headerBackgroundColor;;
+			border-bottom: 12px solid transparent;
 			bottom: auto;
-			top: 2px;
-			left: 6px;
+			top: 1.5px;
+			left: 4px;
 		}
 	}
 }
