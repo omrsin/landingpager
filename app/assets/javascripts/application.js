@@ -16,6 +16,7 @@
 //= require bootstrap-colorpicker
 
 var headerSelected = false;
+var displayedSubmenu;
 
 function updateSubmitInfo () {
 	$('section, div').removeClass('bordered top-bordered');
@@ -36,9 +37,17 @@ function showMenu(domObject, e){
 function showSubmenu(domObject, style, value) {
 	offset = $(domObject).offset();
 	width = parseInt($(domObject).parent().css('width'));
+	if(displayedSubmenu!='#'+style+'-menu-'+value){
+		$('.activeSubmenu').hide().removeClass('activeSubmenu');
+		displayedSubmenu = '#'+style+'-menu-'+value;
+	}
+	else {
+		displayedSubmenu='';
+	}
 	$('#'+style+'-menu-'+value).css('left', offset.left+width+5+'px')
 														 .css('top', offset.top+'px')
-														 .toggle('fast');
+														 .toggle('fast')
+														 .toggleClass('activeSubmenu');
 }
 
 function setStyle(domObject, object, style, value) {
@@ -69,7 +78,7 @@ $(document).ready(function(){
 	});
 
 	$('[id|=option]').click(function(){
-		params = this.id.split('-');
+		params = this.id.split('-');		
 		showSubmenu($(this), params[1], params[2]);		
 	});
 	
@@ -77,21 +86,6 @@ $(document).ready(function(){
 		params = this.id.split('-');
 		setStyle('#header', params[1], params[2], params[3]);		
 	});
-	
-//	$('[id|=border-position]').click(function(){
-//		position = this.id.substring('border-position-'.length);
-//		$('#header').css('border-'+position, 'solid');
-//	});
-//	
-//	$('[id|=border-style]').click(function(){
-//		style = this.id.substring('border-style-'.length);
-//		$('#header').css('border-style', style);
-//	});
-//	
-//	$('[id|=border-width]').click(function(){
-//		width = this.id.substring('border-width-'.length);
-//		$('#header').css('border-width', width);
-//	});
 });
 
 $(document).ready(function(){
