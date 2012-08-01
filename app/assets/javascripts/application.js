@@ -17,6 +17,7 @@
 
 var headerSelected = false;
 var displayedSubmenu;
+var displayedMenu;
 
 function updateSubmitInfo () {
 	$('section, div').removeClass('bordered top-bordered');
@@ -30,7 +31,15 @@ function setPosition(domObject, pageX, pageY) {
 
 function showMenu(domObject, e){
 	e.stopPropagation();
-	$(domObject).toggle();
+	if(displayedMenu!=domObject) {
+		$('.activeMenu').hide().removeClass('activeMenu');
+		$('.activeSubmenu').hide().removeClass('activeSubmenu');
+		displayedMenu = domObject;
+	}
+	else {
+		displayedMenu = '';
+	}
+	$(domObject).toggle().toggleClass('activeMenu');
 	setPosition(domObject, e.pageX, e.pageY);
 }
 
