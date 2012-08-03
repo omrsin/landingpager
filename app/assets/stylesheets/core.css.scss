@@ -60,6 +60,10 @@ html, body {
 	height: 100%;
 }
 
+p {
+	margin: 0px;
+}
+
 .inset-shadow-text {
 	text-shadow: 0px 2px 3px #999;
 }
@@ -178,6 +182,14 @@ form {
 	}
 }
 
+.pixel-input-box {
+	margin-right: 20px;	
+}
+
+.pixel-input {
+	width: 30px;
+}
+
 /* Menu */
 .menu {
 	width: 200px;
@@ -219,6 +231,9 @@ form {
 			&:hover {
 				background: $headerBackgroundColor;
 			}
+		}
+		.my-colorpicker {
+			margin-top: 2px;
 		}		
 	}
 	.multiple {

@@ -24,11 +24,30 @@
 			<div id="option-border-width">Grosor</div>
 			<div id="option-border-radius">Radio</div>
 			<div>
-				Color	<input id="header-border-colorpicker-input" class="my-colorpicker" value="Color">
+				<input id="header-border-colorpicker-input" class="my-colorpicker" value="Color">
 			</div>
 		</div>
 	</div>
-	<div class="primary">Box Shadow</div>
+	<div>
+		<div id="boxshadow-menu-primary" class="primary">Box Shadow</div>
+		<div id="boxshadow-menu-secondary" class="secondary hidden">
+			<div class="clearfix">
+				<p class="pull-left">Vertical</p>
+				<p class="pull-right pixel-input-box"><input id="input-boxshadow-1" data-option="vertical" class="pixel-input" value="0">px</p>
+			</div>
+			<div class="clearfix">
+				<p class="pull-left" >Horizontal</p>
+				<p class="pull-right pixel-input-box"><input id="input-boxshadow-2" data-option="horizontal" class="pixel-input" value="0">px</p>
+			</div>
+			<div class="clearfix">
+				<p class="pull-left">Difuminación</p>
+				<p class="pull-right pixel-input-box"><input id="input-boxshadow-3" data-option="blur" class="pixel-input" value="0">px</p>
+			</div>
+			<div>
+				<input id="header-boxshadow-colorpicker-input" class="my-colorpicker" value="Color" data-color-format="rgba">
+			</div>
+		</div>
+	</div>	
 </div>
 
-<%= render 'core/html_menus/tooltip-menus' %>
+<%= render 'core/html_menus/border-tooltip-menus' %>

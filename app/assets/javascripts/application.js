@@ -15,9 +15,21 @@
 //= require_tree .
 //= require bootstrap-colorpicker
 
+/* Selected Format Variables */
 var headerSelected = false;
+
+/* Active Element Variables */
+var activeObject;
 var displayedSubmenu;
 var displayedMenu;
+
+/* Box Shadows Variables */
+var boxShadowHorizontal = "0";
+var boxShadowVertical = "0";
+var boxShadowBlur = "0";
+var boxShadowColor = "black";
+
+/* Functions */
 
 function updateSubmitInfo () {
 	$('section, div').removeClass('bordered top-bordered');
@@ -60,18 +72,34 @@ function showSubmenu(domObject, style, value) {
 }
 
 function setStyle(domObject, object, style, value) {
-	$(domObject).css(object+'-'+style, value);
+ 	$(domObject).css(object+'-'+style, value);
 }
+
+function boxShadowValue(){
+	return boxShadowHorizontal+"px "+boxShadowVertical+"px "+boxShadowBlur+"px "+boxShadowColor;
+}
+
+function updateBoxShadow(attribute, value){
+	if(attribute=='vertical'){ boxShadowVertical = value; }
+	else if(attribute=='horizontal'){ boxShadowHorizontal = value; }
+	else if(attribute=='blur'){ boxShadowBlur = value; }
+	setStyle(activeObject,'box','shadow', boxShadowValue());
+}
+
 
 $(document).ready(function(){
 	$('#body').bind({
-		click: function(){ showMenu('#body-menu', event); }
+		click: function(){ showMenu('#body-menu', event);
+											 activeObject="#body"; }
 	});
 
 	$('#header').bind({
 		click: function(){ 
 			if(!headerSelected)	{ showMenu('#header-menu', event); }
-			else { showMenu('#menu-style', event); }
+			else { 
+				showMenu('#menu-style', event);
+				activeObject="#header"; 
+			}
 		}
 	});
 	
@@ -85,6 +113,11 @@ $(document).ready(function(){
 		$(this).toggleClass('multiple active');
 		$('#border-menu-secondary').toggle("fast");
 	});
+	
+	$('#menu-style #boxshadow-menu-primary').click(function(){
+		$(this).toggleClass('multiple active');
+		$('#boxshadow-menu-secondary').toggle("fast");
+	});
 
 	$('[id|=option]').click(function(){
 		params = this.id.split('-');		
@@ -95,7 +128,31 @@ $(document).ready(function(){
 		params = this.id.split('-');
 		setStyle('#header', params[1], params[2], params[3]);		
 	});
+	
+	$('.pixel-input').bind({
+		keydown: function(e){
+							 if ( e.keyCode == 38 ) {
+								 event.preventDefault();
+								 $(this).val(parseInt($(this).attr('value'))+1);
+						 	 }
+						 	 else if (e.keyCode == 40 ) {
+								 event.preventDefault();
+								 $(this).val(parseInt($(this).attr('value'))-1);
+						 	 }
+						 	 attribute = $(this).data('option');
+							 value = $(this).val();
+							 updateBoxShadow(attribute, value);
+						 },
+		keyup: function(){
+					   attribute = $(this).data('option');
+						 value = $(this).val();
+					   updateBoxShadow(attribute, value);
+		       }
+   	});
 });
+
+
+/* Colorpickers */
 
 $(document).ready(function(){
 	$('#page-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
@@ -108,5 +165,10 @@ $(document).ready(function(){
 	
 	$('#header-border-colorpicker-input').colorpicker().on('changeColor', function(e){
 		$('#header').css('border-color', e.color.toHex());
+	});
+	
+	$('#header-boxshadow-colorpicker-input').colorpicker().on('changeColor', function(e){
+		boxShadowColor = e.color.toHex();
+		setStyle(activeObject, "box", "shadow", boxShadowValue());
 	});
 });
