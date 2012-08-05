@@ -103,11 +103,23 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('[id|=section]').click(function(){
+		showMenu('#menu-style', event);
+    activeObject="#information"; 		
+	});
+	
+	$('#footer').click(function(){
+		showMenu('#menu-style', event);
+    activeObject="#footer"; 		
+	});
+	
 	$('[id|=header-option]').click(function(){
 		$('#header').html($('#header-format-'+this.id.substring(this.id.length-1)).html());
 		headerSelected = true;
 		showMenu('#header-menu', event);
 	});
+	
+	/* Menus Behavior */
 	
 	$('#menu-style #border-menu-primary').click(function(){
 		$(this).toggleClass('multiple active');
@@ -122,11 +134,13 @@ $(document).ready(function(){
 	$('[id|=option]').click(function(){
 		params = this.id.split('-');		
 		showSubmenu($(this), params[1], params[2]);		
-	});
+	});	
+	
+	/* Style Behavior */
 	
 	$('[id|=style]').click(function(){
 		params = this.id.split('-');
-		setStyle('#header', params[1], params[2], params[3]);		
+		setStyle( activeObject, params[1], params[2], params[3]);		
 	});
 	
 	$('.pixel-input').bind({
@@ -160,11 +174,11 @@ $(document).ready(function(){
 	});
 	
 	$('#header-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
-		$('#header').css('background-color', e.color.toHex());
+		$(activeObject).css('background-color', e.color.toHex());
 	});
 	
 	$('#header-border-colorpicker-input').colorpicker().on('changeColor', function(e){
-		$('#header').css('border-color', e.color.toHex());
+		$(activeObject).css('border-color', e.color.toHex());
 	});
 	
 	$('#header-boxshadow-colorpicker-input').colorpicker().on('changeColor', function(e){
