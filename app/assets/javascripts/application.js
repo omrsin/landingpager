@@ -105,7 +105,7 @@ $(document).ready(function(){
 	
 	$('[id|=section]').click(function(){
 		showMenu('#menu-style', event);
-    activeObject="#information"; 		
+    activeObject="#content"; 		
 	});
 	
 	$('#footer').click(function(){
