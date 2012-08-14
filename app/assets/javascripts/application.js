@@ -46,13 +46,13 @@ function setPosition(domObject, pageX, pageY) {
 function showMenu(domObject, e){
 	e.stopPropagation();
 	if(displayedMenu!=domObject) {
-		$('.activeMenu').hide().removeClass('activeMenu');
-		$('.activeSubmenu').hide().removeClass('activeSubmenu');
+		$('.activeMenu').hide().removeClass('activeMenu');		
 		displayedMenu = domObject;
 	}
 	else {
 		displayedMenu = '';
 	}
+	$('.activeSubmenu').hide().removeClass('activeSubmenu');
 	$(domObject).toggle().toggleClass('activeMenu');
 	setPosition(domObject, e.pageX, e.pageY);
 }
@@ -139,11 +139,13 @@ $(document).ready(function(){
 	$('#menu-style #border-menu-primary').click(function(){
 		$(this).toggleClass('multiple active');
 		$('#border-menu-secondary').toggle("fast");
+		$('.activeSubmenu').hide().removeClass('activeSubmenu');
 	});
 	
 	$('#menu-style #boxshadow-menu-primary').click(function(){
 		$(this).toggleClass('multiple active');
 		$('#boxshadow-menu-secondary').toggle("fast");
+		$('.activeSubmenu').hide().removeClass('activeSubmenu');
 	});
 	
 	$('#menu-format #format-image-primary').click(function(){
