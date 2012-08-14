@@ -200,6 +200,8 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$('#page-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
 		$('#body').css('background-color', e.color.toHex());
+		$('#main').css('background-color', e.color.toHex());
+		$('.header-form input[name="html_background"]').val(e.color.toHex());
 	});
 	
 	$('#header-bg-colorpicker-input').colorpicker().on('changeColor', function(e){

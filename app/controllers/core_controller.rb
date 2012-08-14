@@ -4,14 +4,14 @@ class CoreController < ApplicationController
   
   def generate
   	respond_to do |format|
-  		format.html { send_data generateMarkup(params[:html_string]), 
+  		format.html { send_data generateMarkup(params[:html_string], params[:html_background]), 
   														filename: "landingpage.html" }
   	end
   end
   
   private	
   
-  def generateMarkup(content)
+  def generateMarkup(content, background)
   	upper = "<!DOCTYPE html>"+
   					"<html style=\"height: 100%;\">\n\t"+
   						"<head>\n\t\t"+
@@ -20,7 +20,7 @@ class CoreController < ApplicationController
 								"<meta name=\"description\" content=\"\">\n\t"+
 								"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"+
   						"</head>\n\t"+
-  						"<body style=\"margin: 0; height: 100%;\">\n"
+  						"<body style=\"margin: 0; height: 100%; background: #{background}\">\n"
   	lower = 	"\n\t</body>\n"+
   					"</html>"
   	upper + content + lower
