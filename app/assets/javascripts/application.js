@@ -18,6 +18,7 @@
 /* Selected Format Variables */
 var headerSelected = false;
 var sectionSelected = [false, false, false, false, false];
+var footerSelected = false;
 
 /* Active Element Variables */
 var activeObject;
@@ -132,9 +133,17 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#footer').click(function(){
+	$('#footer-content').click(function(){
+		if(!footerSelected) { showMenu('#footer-menu', event); }
+		else {
+			activeObject="#footer";
+			showMenu('#menu-style-footer', event);
+		}
+	});
+	
+	$('#footer-bottom-line').click(function(){
+		activeObject="#footer";
 		showMenu('#menu-style-footer', event);
-    activeObject="#footer"; 		
 	});
 	
 	$('[id|=header-option]').click(function(){
@@ -149,6 +158,12 @@ $(document).ready(function(){
 		section = activeSection.attr('id').substring(activeSection.attr('id').length-1);
 		sectionSelected[section-1] = true;
 		showMenu('#format-menu', event);
+	});
+	
+	$('[id|=footer-option]').click(function(){
+		$('#footer-content').html($('#footer-format-'+this.id.substring(this.id.length-1)).html());
+		footerSelected = true;
+		showMenu('#footer-menu', event);
 	});
 	
 	/* Menus Behavior */
@@ -222,40 +237,16 @@ $(document).ready(function(){
 		$('#main').css('background-color', e.color.toHex());
 		$('.header-form input[name="html_background"]').val(e.color.toHex());
 	});
-		
-	$('#header-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
+	
+	$('[id$=bg-colorpicker-input]:not(#body-bg-colorpicker-input)').colorpicker().on('changeColor', function(e){
 		$(activeObject).css('background-color', e.color.toHex());
 	});
 	
-	$('#header-border-colorpicker-input').colorpicker().on('changeColor', function(e){
+	$('[id$=border-colorpicker-input]').colorpicker().on('changeColor', function(e){
 		$(activeObject).css('border-color', e.color.toHex());
 	});
 	
-	$('#header-boxshadow-colorpicker-input').colorpicker().on('changeColor', function(e){
+	$('[id$=boxshadow-colorpicker-input]').colorpicker().on('changeColor', function(e){
 		updateBoxShadow("color", e.color.toHex());
 	});
-	
-	$('#sections-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
-		$(activeObject).css('background-color', e.color.toHex());
-	});	
-	
-	$('#sections-border-colorpicker-input').colorpicker().on('changeColor', function(e){
-		$(activeObject).css('border-color', e.color.toHex());
-	});
-	
-	$('#sections-boxshadow-colorpicker-input').colorpicker().on('changeColor', function(e){
-		updateBoxShadow("color", e.color.toHex());
-	});
-	
-	$('#footer-bg-colorpicker-input').colorpicker().on('changeColor', function(e){
-		$(activeObject).css('background-color', e.color.toHex());
-	});	
-	
-	$('#footer-border-colorpicker-input').colorpicker().on('changeColor', function(e){
-		$(activeObject).css('border-color', e.color.toHex());
-	});
-	
-	$('#footer-boxshadow-colorpicker-input').colorpicker().on('changeColor', function(e){
-		updateBoxShadow("color", e.color.toHex());
-	});	
 });
