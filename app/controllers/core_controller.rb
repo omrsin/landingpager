@@ -1,5 +1,6 @@
 class CoreController < ApplicationController
   def home
+  	@imageHeader = "http://b.dryicons.com/images/icon_sets/coquette_part_4_icons_set/png/128x128/palette.png"
   end
   
   def generate

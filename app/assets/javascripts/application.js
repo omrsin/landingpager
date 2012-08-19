@@ -146,6 +146,11 @@ $(document).ready(function(){
 		showMenu('#menu-style-footer', event);
 	});
 	
+	$('[class$=content-image]').click(function(){
+		event.stopPropagation();
+		activeObject = this;		
+	});
+	
 	$('[id|=header-option]').click(function(){
 		$('#header').html($('#header-format-'+this.id.substring(this.id.length-1)).html());
 		headerSelected = true;
