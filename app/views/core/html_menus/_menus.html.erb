@@ -3,6 +3,16 @@
 <%= render 'core/html_menus/styles/sections', section: "sections" %>
 <%= render 'core/html_menus/styles/sections', section: "footer" %>
 
+<%= render 'core/html_menus/styles/images', section: "header-image" %>
+
+<% 
+for i in 1...6 
+	for j in 1...5 %>
+		<%= render 'core/html_menus/styles/images', section: "content-image-#{i}-#{j}" %>	 	
+<%   
+	end
+end %>
+
 <%= render 'core/html_menus/formats/header' %>
 <%= render 'core/html_menus/formats/sections' %>
 <%= render 'core/html_menus/formats/footer' %>

@@ -109,6 +109,14 @@ function setBoxShadowFromTarget(){
 	}
 }
 
+function setSectionElementId(sectionNumber, type){
+	if(type=='image'){
+		$('#section-'+sectionNumber+' img').each(function(index){
+			$(this).attr('id','content-image-'+sectionNumber+'-'+(index+1));
+		});
+	}
+}
+
 $(document).ready(function(){
 	$('#body').click(function(){ 
 		showMenu('#body-menu', event);
@@ -146,9 +154,18 @@ $(document).ready(function(){
 		showMenu('#menu-style-footer', event);
 	});
 	
-	$('[class$=content-image]').click(function(){
-		event.stopPropagation();
-		activeObject = this;		
+	$('#header').delegate('[id$=content-image]', "click" , function(e){
+		e.stopPropagation();
+		activeObject = this;
+		showMenu('#menu-style-header-image', e);
+	});
+	
+	$('[id|=section]').delegate('[id|=content-image]', "click", function(e){
+		e.stopPropagation();
+		activeObject = this;
+		section = $(this).attr('id').split('-')[2];
+		image = $(this).attr('id').split('-')[3];
+		showMenu('#menu-style-content-image-'+section+'-'+image, e);
 	});
 	
 	$('[id|=header-option]').click(function(){
@@ -162,6 +179,7 @@ $(document).ready(function(){
 		$(activeSection).html($('#section-format-'+params[2]+'-'+params[4]).html());
 		section = activeSection.attr('id').substring(activeSection.attr('id').length-1);
 		sectionSelected[section-1] = true;
+		setSectionElementId(section, params[2]);
 		showMenu('#format-menu', event);
 	});
 	
