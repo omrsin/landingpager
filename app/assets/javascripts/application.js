@@ -23,14 +23,21 @@ var footerSelected = false;
 /* Active Element Variables */
 var activeObject;
 var activeSection;
+var activeText;
 var displayedSubmenu;
 var displayedMenu;
 
-/* Box Shadows Variables */
+/* Box Shadow Variables */
 var boxShadowHorizontal = "0";
 var boxShadowVertical = "0";
 var boxShadowBlur = "0";
 var boxShadowColor = "black";
+
+/* Text Shadow Variables */
+var textShadowHorizontal = "0";
+var textShadowVertical = "0";
+var textShadowBlur = "0";
+var textShadowColor = "black";
 
 /* Functions */
 
@@ -78,6 +85,17 @@ function setStyle(domObject, object, style, value) {
  	$(domObject).css(object+'-'+style, value);
 }
 
+function setSectionElementId(sectionNumber, type){
+	if(type=='image'){
+		$('#section-'+sectionNumber+' img').each(function(index){
+			$(this).attr('id','content-image-'+sectionNumber+'-'+(index+1));
+		});
+	}
+}
+
+
+/* Box Shadow Functions */
+
 function boxShadowValue(){
 	return boxShadowHorizontal+" "+boxShadowVertical+" "+boxShadowBlur+" "+boxShadowColor;
 }
@@ -109,15 +127,42 @@ function setBoxShadowFromTarget(){
 	}
 }
 
-function setSectionElementId(sectionNumber, type){
-	if(type=='image'){
-		$('#section-'+sectionNumber+' img').each(function(index){
-			$(this).attr('id','content-image-'+sectionNumber+'-'+(index+1));
-		});
+/* Text Shadow Functions */
+
+function textShadowValue(){
+	return textShadowHorizontal+" "+textShadowVertical+" "+textShadowBlur+" "+textShadowColor;
+}
+
+function updateTextShadow(attribute, value){
+	setTextShadowFromTarget();
+	if(attribute=='vertical'){ textShadowVertical = value+"px"; }
+	else if(attribute=='horizontal'){ textShadowHorizontal = value+"px"; }
+	else if(attribute=='blur'){ textShadowBlur = value+"px"; }
+	else if(attribute=='color'){ textShadowColor = value; }
+	setStyle(activeText,'text','shadow', textShadowValue());
+}
+
+function setTextShadowFromTarget(){
+	var textShadow = $(activeText).css('text-shadow');
+	if(textShadow=='none'){
+		textShadowHorizontal = "0px";
+		textShadowVertical = "0px";
+		textShadowBlur = "0px";
+		textShadowColor = "black";
+	}
+	else {
+		var textShadowValues = textShadow.split(')');
+		textShadowColor = textShadowValues[0]+')';
+		textShadowValues = textShadowValues[1].split(' ');
+		textShadowHorizontal = textShadowValues[1];
+		textShadowVertical = textShadowValues[2];
+		textShadowBlur = textShadowValues[3];
 	}
 }
 
 $(document).ready(function(){
+	/* Elements Behavior */
+	
 	$('#body').click(function(){ 
 		showMenu('#body-menu', event);
 		activeObject="#body";
@@ -160,6 +205,13 @@ $(document).ready(function(){
 		showMenu('#menu-style-header-image', e);
 	});
 	
+	$('#header').delegate('[id$=content-text] h1', "click" , function(e){
+		e.stopPropagation();
+		activeObject = $(this).parents('[id$=content-text]');
+		activeText = this;
+		showMenu('#menu-style-header-text', e);
+	});
+	
 	$('[id|=section]').delegate('[id|=content-image]', "click", function(e){
 		e.stopPropagation();
 		activeObject = this;
@@ -167,6 +219,8 @@ $(document).ready(function(){
 		image = $(this).attr('id').split('-')[3];
 		showMenu('#menu-style-content-image-'+section+'-'+image, e);
 	});
+	
+	/* Format Menus Behavior */
 	
 	$('[id|=header-option]').click(function(){
 		$('#header').html($('#header-format-'+this.id.substring(this.id.length-1)).html());
@@ -189,7 +243,7 @@ $(document).ready(function(){
 		showMenu('#footer-menu', event);
 	});
 	
-	/* Menus Behavior */
+	/* Style Menus Behavior */
 	
 	$('[id|=border-menu-primary]').click(function(){
 		$(this).toggleClass('multiple active');
@@ -202,6 +256,20 @@ $(document).ready(function(){
 		$(this).toggleClass('multiple active');
 		section = $(this).data('section');
 		$('#boxshadow-menu-secondary-'+section).toggle("fast");
+		$('.activeSubmenu').hide().removeClass('activeSubmenu');
+	});
+	
+	$('[id|=font-menu-primary]').click(function(){
+		$(this).toggleClass('multiple active');
+		section = $(this).data('section');
+		$('#font-menu-secondary-'+section).toggle("fast");
+		$('.activeSubmenu').hide().removeClass('activeSubmenu');
+	});
+	
+	$('[id|=textshadow-menu-primary]').click(function(){
+		$(this).toggleClass('multiple active');
+		section = $(this).data('section');
+		$('#textshadow-menu-secondary-'+section).toggle("fast");
 		$('.activeSubmenu').hide().removeClass('activeSubmenu');
 	});
 	
@@ -226,7 +294,17 @@ $(document).ready(function(){
 	
 	$('[id|=style]').click(function(){
 		params = this.id.split('-');
-		setStyle( activeObject, params[1], params[2], params[3]);		
+		setStyle(activeObject, params[1], params[2], params[3]);		
+	});
+	
+	$('[id|=text-style]').click(function(){
+		params = this.id.split('-');
+		if(params[params.length-1]!='normal') {
+			setStyle(activeText, params[2], params[3], params[4]);
+		} else {
+			setStyle(activeText,'font','weight','normal');
+			setStyle(activeText,'font','style','normal');
+		}
 	});
 	
 	$('.pixel-input').bind({
@@ -247,6 +325,27 @@ $(document).ready(function(){
 					   attribute = $(this).data('option');
 						 value = $(this).val();
 					   updateBoxShadow(attribute, value);
+		       }
+   	});
+   	
+   	$('.text-pixel-input').bind({
+		keydown: function(e){
+							 if ( e.keyCode == 38 ) {
+								 event.preventDefault();
+								 $(this).val(parseInt($(this).attr('value'))+1);
+						 	 }
+						 	 else if (e.keyCode == 40 ) {
+								 event.preventDefault();
+								 $(this).val(parseInt($(this).attr('value'))-1);
+						 	 }
+						 	 attribute = $(this).data('option');
+							 value = $(this).val();
+							 updateTextShadow(attribute, value);
+						 },
+		keyup: function(){
+					   attribute = $(this).data('option');
+						 value = $(this).val();
+					   updateTextShadow(attribute, value);
 		       }
    	});
 });
@@ -271,5 +370,13 @@ $(document).ready(function(){
 	
 	$('[id$=boxshadow-colorpicker-input]').colorpicker().on('changeColor', function(e){
 		updateBoxShadow("color", e.color.toHex());
+	});
+	
+	$('[id$=font-colorpicker-input]').colorpicker().on('changeColor', function(e){
+		$(activeText).css('color', e.color.toHex());
+	});
+	
+	$('[id$=textshadow-colorpicker-input]').colorpicker().on('changeColor', function(e){
+		updateTextShadow("color", e.color.toHex());
 	});
 });

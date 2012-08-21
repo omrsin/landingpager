@@ -79,9 +79,6 @@ p {
 
 .bordered {
 	border: dashed 2px $contentBorderColor;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
 }
 
 .hidden {
@@ -186,7 +183,7 @@ form {
 	margin-right: 20px;	
 }
 
-.pixel-input {
+.pixel-input, .text-pixel-input {
 	width: 30px;
 }
 
