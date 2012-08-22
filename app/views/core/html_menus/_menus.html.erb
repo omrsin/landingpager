@@ -8,12 +8,14 @@
 <% 
 for i in 1...6 
 	for j in 1...5 %>
-		<%= render 'core/html_menus/styles/images', section: "content-image-#{i}-#{j}" %>	 	
+		<%= render 'core/html_menus/styles/images', section: "content-image-#{i}-#{j}" %>
+		<%= render 'core/html_menus/styles/text', section: "content-text-#{i}-#{j}" %>	 	
 <%   
 	end
 end %>
 
-<%= render 'core/html_menus/styles/text', section: 'header-text' %>
+<%= render 'core/html_menus/styles/text', section: 'header-text-h1' %>
+<%= render 'core/html_menus/styles/text', section: 'header-text-li' %>
 
 <%= render 'core/html_menus/formats/header' %>
 <%= render 'core/html_menus/formats/sections' %>

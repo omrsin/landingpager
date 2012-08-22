@@ -90,6 +90,10 @@ function setSectionElementId(sectionNumber, type){
 		$('#section-'+sectionNumber+' img').each(function(index){
 			$(this).attr('id','content-image-'+sectionNumber+'-'+(index+1));
 		});
+	} else if(type==='text'){
+		$('#section-'+sectionNumber+' .bordered').each(function(index){
+			$(this).attr('id','content-text-'+sectionNumber+'-'+(index+1));
+		});
 	}
 }
 
@@ -209,7 +213,14 @@ $(document).ready(function(){
 		e.stopPropagation();
 		activeObject = $(this).parents('[id$=content-text]');
 		activeText = this;
-		showMenu('#menu-style-header-text', e);
+		showMenu('#menu-style-header-text-h1', e);
+	});
+	
+	$('#header').delegate('[id$=content-text] li', "click" , function(e){
+		e.stopPropagation();
+		activeObject = $(this).parents('[id$=content-text]');
+		activeText = $(this).parents('ul');
+		showMenu('#menu-style-header-text-li', e);
 	});
 	
 	$('[id|=section]').delegate('[id|=content-image]', "click", function(e){
@@ -218,6 +229,15 @@ $(document).ready(function(){
 		section = $(this).attr('id').split('-')[2];
 		image = $(this).attr('id').split('-')[3];
 		showMenu('#menu-style-content-image-'+section+'-'+image, e);
+	});
+	
+	$('[id|=section]').delegate('[id|=content-text]', "click", function(e){
+		e.stopPropagation();
+		activeObject = this;
+		activeText = this;
+		section = $(this).attr('id').split('-')[2];
+		text = $(this).attr('id').split('-')[3];
+		showMenu('#menu-style-content-text-'+section+'-'+text, e);
 	});
 	
 	/* Format Menus Behavior */
