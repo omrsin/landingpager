@@ -88,6 +88,13 @@ setFooterSelected = (isSelected) ->
 		when 'text'
 			$("#section-#{sectionNumber} .text").each (index) ->
 				$(@).attr 'id', "content-text-#{sectionNumber}-#{index+1}"
+				
+# Shadow Function
+
+updateShadow = (style, attribute, value) ->
+	switch style
+		when 'boxshadow'  then updateBoxShadow attribute, value
+		when 'textshadow' then updateTextShadow attribute, value
  
 # Box Shadow Functions
 
@@ -297,8 +304,9 @@ $ ->
 			setStyle activeText,'font-weight','normal'
 			setStyle activeText,'font-style','normal'
 			
-	$('.pixel-input').bind
+	$('.pixel-input').bind		
 		keydown: (e) ->
+			style = $(@).attr('id').split('-')[1]
 			if e.keyCode == 38
 				e.preventDefault()
 				$(@).val parseInt($(@).attr('value'))+1
@@ -307,27 +315,12 @@ $ ->
 				$(@).val parseInt($(@).attr('value'))-1
 			attribute = $(@).data 'option'
 			value = $(@).val()
-			updateBoxShadow attribute, value
+			updateShadow style, attribute, value
 		keyup: ->
+			style = $(@).attr('id').split('-')[1]
 			attribute = $(@).data 'option'
 			value = $(@).val()
-			updateBoxShadow attribute, value
-				
-	$('.text-pixel-input').bind
-		keydown: (e) ->
-			if e.keyCode == 38
-				e.preventDefault()
-				$(@).val parseInt($(@).attr('value'))+1
-			else if e.keyCode == 40
-				e.preventDefault()
-				$(@).val parseInt($(@).attr('value'))-1
-			attribute = $(@).data 'option'
-			value = $(@).val()
-			updateTextShadow attribute, value
-		keyup: ->
-			attribute = $(@).data 'option'
-			value = $(@).val()
-			updateTextShadow attribute, value
+			updateShadow style, attribute, value
 
 # Colorpickers
 
