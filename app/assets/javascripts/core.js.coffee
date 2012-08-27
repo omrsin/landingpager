@@ -195,31 +195,31 @@ $ ->
 		
 # Content Behavior
 
-	$('#header').delegate '[id$=content-image]', "click" , (e) ->
+	$('#header').on "click", '[id$=content-image]', (e) ->
 		e.stopPropagation()
 		setActiveObject @
 		showMenu '#menu-style-header-image', e
 		
-	$('#header').delegate '[id$=content-text] h1', "click" , (e) ->
+	$('#header').on "click", '[id$=content-text] h1', (e) ->
 		e.stopPropagation()
 		setActiveObject $(@).parents '[id$=content-text]'
 		setActiveText @;
 		showMenu '#menu-style-header-text-h1', e
 		
-	$('#header').delegate '[id$=content-text] li', "click" , (e) ->
+	$('#header').on "click", '[id$=content-text] li', (e) ->
 		e.stopPropagation()
 		setActiveObject $(@).parents '[id$=content-text]'
 		setActiveText $(@).parents 'ul'
 		showMenu '#menu-style-header-text-li', e
 		
-	$('[id|=section]').delegate '[id|=content-image]', "click", (e) ->
+	$('[id|=section]').on "click", '[id|=content-image]', (e) ->
 		e.stopPropagation()
 		setActiveObject @
 		section = $(@).attr('id').split('-')[2]
 		image = $(@).attr('id').split('-')[3]
 		showMenu "#menu-style-content-image-#{section}-#{image}", e
 	
-	$('[id|=section]').delegate '[id|=content-text]', "click", (e) ->
+	$('[id|=section]').on "click", '[id|=content-text]', (e) ->
 		e.stopPropagation()
 		setActiveObject @
 		setActiveText @
@@ -304,7 +304,7 @@ $ ->
 			setStyle activeText,'font-weight','normal'
 			setStyle activeText,'font-style','normal'
 			
-	$('.pixel-input').bind		
+	$('.pixel-input').on		
 		keydown: (e) ->
 			style = $(@).attr('id').split('-')[1]
 			if e.keyCode == 38
