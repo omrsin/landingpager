@@ -28,7 +28,7 @@ group :assets do
   gem 'bootstrap-colorpicker-rails', '0.1'
 end
 
-gem 'jquery-rails', '2.0.0'
+gem 'jquery-rails', '3.1.3'
 
 group :test do
 	gem 'rspec-rails', '2.9.0'
